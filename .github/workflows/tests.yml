@@ -1,0 +1,40 @@
+# Название нашего CI/CD пайплайна
+name: QA Tests
+
+# Когда запускать?
+on:
+  push:              # при каждом git push
+    branches: [ main ] # только в ветку main
+
+# Список задач
+jobs:
+  test:                        # название задачи
+    runs-on: ubuntu-latest     # запускать на Linux сервере GitHub
+
+    # Шаги выполнения по порядку
+    steps:
+
+    # Шаг 1 — скачать наш код с GitHub
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Шаг 2 — установить Python 3.11
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    # Шаг 3 — установить все нужные библиотеки
+    - name: Install dependencies
+      run: |
+        pip install selenium pytest pytest-xdist requests
+
+    # Шаг 4 — установить браузер Chrome
+    - name: Install Chrome
+      uses: browser-actions/setup-chrome@v1
+
+    # Шаг 5 — запустить API тесты
+    # (без Selenium — у GitHub нет монитора)
+    - name: Run API tests only
+      run: |
+        python -m pytest test_cats.py test_chuck.py -v
