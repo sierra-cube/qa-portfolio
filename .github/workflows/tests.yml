@@ -37,5 +37,5 @@ jobs:
     # (без Selenium — у GitHub нет монитора)
     - name: Run API tests only
       run: |
-	cd my_tests
+        cd my_tests
         python -m pytest test_cats.py test_chuck.py -v
