@@ -12,6 +12,7 @@ QA-инженер с навыками ручного и автоматизиро
 - Page Object Model
 
 ## 📁 Структура проекта
+```
 my_tests/
 test_cats.py      # API тесты — catfact.ninja
 test_chuck.py     # API тесты — chucknorris.io
@@ -19,6 +20,7 @@ test_login.py     # UI тесты — авторизация
 test_wiki.py      # UI тесты — поиск Wikipedia
 pages.py          # Page Object — Wikipedia
 login_page.py     # Page Object — Login
+```
 ## 🚀 Как запустить
 `bash
 # Установить зависимости
@@ -32,8 +34,10 @@ python -m pytest -v --html=report.html
 
 # Запустить параллельно
 python -m pytest -v -n auto
+```
 📊 Результаты
 Всего тестов: 15
 API тестов: 6
 UI тестов: 9
 CI/CD: GitHub Actions ✅
+```
