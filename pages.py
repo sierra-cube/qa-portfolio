@@ -14,7 +14,7 @@ class WikipediaPage:
             service=Service(ChromeDriverManager().install()),
             options=options
         )
-        self.wait = WebDriverWait(self.driver, 10)
+        self.wait = WebDriverWait(self.driver, 20)
 
     def open(self):
         self.driver.get("https://wikipedia.org")
@@ -26,6 +26,9 @@ class WikipediaPage:
         field.click()
         field.send_keys(query)
         field.submit()
+        self.wait.until(
+	    EC.title_contains(query)
+	)
 
     def get_title(self):
         return self.driver.title
